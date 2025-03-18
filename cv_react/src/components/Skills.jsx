@@ -1,7 +1,6 @@
 import { useState } from "react";
-import { MdArrowBackIosNew } from "react-icons/md";
-import { MdWork } from "react-icons/md";
-import Input from "./Input";
+import { MdArrowBackIosNew, MdWork } from "react-icons/md";
+
 export default function Skills() {
   const [collapsed, setCollapsed] = useState(true);
 

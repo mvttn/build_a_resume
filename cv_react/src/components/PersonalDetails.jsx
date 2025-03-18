@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { MdArrowBackIosNew } from "react-icons/md";
-import Input from "./Input";
 import { FaUser } from "react-icons/fa";
+import Input from "./Input";
 
 export default function PersonalDetails() {
   const [collapsed, setCollapsed] = useState(false);
