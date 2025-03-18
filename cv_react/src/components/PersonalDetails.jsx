@@ -6,7 +6,8 @@ import { FaUser } from "react-icons/fa";
 export default function PersonalDetails() {
   const [collapsed, setCollapsed] = useState(false);
   return (
-    <div className="mx-10 my-5 block w-full max-w-sm min-w-[475px] justify-evenly space-y-3 rounded-lg border border-gray-200 bg-white p-6 shadow-sm">
+    <div className="mx-10 my-5 block w-full max-w-sm min-w-[475px] justify-evenly rounded-lg border border-gray-200 bg-white px-6 shadow-sm">
+      {" "}
       <div
         className={`flex h-[50px] w-full items-center justify-between transition-all duration-300 ease-in-out ${collapsed ? "rounded-xl" : "rounded-t-xl"}`}
         onClick={() => setCollapsed(!collapsed)}
@@ -19,7 +20,6 @@ export default function PersonalDetails() {
           className={`text-sm transition-transform duration-300 ${collapsed ? "rotate-90" : "-rotate-90"}`}
         />
       </div>
-
       <div
         className={`flex w-full flex-col items-start justify-evenly rounded-b-xl transition-all duration-300 ease-in-out ${collapsed ? "h-0" : "h-[350px]"} m-0`}
       >
