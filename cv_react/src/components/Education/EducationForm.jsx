@@ -30,7 +30,7 @@ export default function EducationForm() {
           />
         </div>
       </div>
-      <Input id="location" placeholder="Enter location" labelText="Location" />
+      <Input id="location" placeholder="Enter Location" labelText="Location" />
     </div>
   );
 }

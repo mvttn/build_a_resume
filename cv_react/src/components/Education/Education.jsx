@@ -7,7 +7,7 @@ import EducationForm from "./EducationForm";
 export default function Education() {
   const [collapsed, setCollapsed] = useState(true);
   const [formOpen, setFormOpen] = useState(true);
-  
+
   return (
     <div className="mx-10 my-5 block w-full max-w-sm min-w-[475px] justify-evenly rounded-lg border border-gray-200 bg-white px-6 shadow-sm">
       <button
@@ -15,7 +15,7 @@ export default function Education() {
         onClick={() => setCollapsed(!collapsed)}
       >
         <div className="flex items-center justify-center space-x-2">
-          <GiGraduateCap />
+          <GiGraduateCap size="1.4em" />
           <h3 className="font-semibold">Education</h3>
         </div>
         <MdArrowBackIosNew

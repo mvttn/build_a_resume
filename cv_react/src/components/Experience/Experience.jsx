@@ -14,7 +14,7 @@ export default function Experience() {
         onClick={() => setCollapsed(!collapsed)}
       >
         <div className="flex items-center justify-center space-x-2">
-          <MdWork />
+          <MdWork size="1.3em" />
           <h3 className="font-semibold">Experience</h3>
         </div>
         <MdArrowBackIosNew

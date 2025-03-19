@@ -13,7 +13,7 @@ export default function PersonalDetails() {
         onClick={() => setCollapsed(!collapsed)}
       >
         <div className="flex items-center justify-center space-x-2">
-          <FaUser />
+          <FaUser size="1.3em" />
           <h3 className="font-semibold">Personal Details</h3>
         </div>
         <MdArrowBackIosNew

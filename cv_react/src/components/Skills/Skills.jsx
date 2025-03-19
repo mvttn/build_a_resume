@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { MdArrowBackIosNew, MdWork } from "react-icons/md";
+import { MdArrowBackIosNew } from "react-icons/md";
+import { FaLightbulb } from "react-icons/fa";
 import Button from "../Button";
 import SkillsForm from "./SkillsForm";
 export default function Skills() {
@@ -12,7 +13,7 @@ export default function Skills() {
         onClick={() => setCollapsed(!collapsed)}
       >
         <div className="flex items-center justify-center space-x-2">
-          <MdWork />
+          <FaLightbulb size="1.3em" />
           <h3 className="font-semibold">Skills</h3>
         </div>
         <MdArrowBackIosNew
