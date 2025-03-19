@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { MdArrowBackIosNew } from "react-icons/md";
 import { FaUser } from "react-icons/fa";
-import Input from "./Input";
+import PersonalDetailsForm from "./PersonalDetailsForm";
 
-export default function PersonalDetails() {
+export default function PersonalDetails({ formData, onChange }) {
   const [collapsed, setCollapsed] = useState(false);
+
   return (
     <div className="m-10 block w-full max-w-sm min-w-[475px] justify-evenly rounded-lg border border-gray-200 bg-white px-6 shadow-sm">
       {" "}
@@ -24,30 +25,7 @@ export default function PersonalDetails() {
         className={`flex w-full flex-col items-start justify-evenly rounded-b-xl transition-all duration-300 ease-in-out ${collapsed ? "h-0" : "h-[325px]"}`}
       >
         {!collapsed && (
-          <>
-            <Input
-              id="full-name"
-              placeholder="Enter First and Last Name"
-              labelText="Full Name"
-            />
-            <Input
-              id="email"
-              placeholder="Enter Email"
-              inputType="email"
-              labelText="Email"
-            />
-            <Input
-              id="phone-number"
-              placeholder="Enter Phone Number"
-              type="tel"
-              labelText="Phone Number"
-            />
-            <Input
-              id="address"
-              placeholder="City, Country"
-              labelText="Address"
-            />
-          </>
+          <PersonalDetailsForm formData={formData} onChange={onChange} />
         )}
       </div>
     </div>
