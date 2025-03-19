@@ -6,7 +6,7 @@ import Input from "./Input";
 export default function PersonalDetails() {
   const [collapsed, setCollapsed] = useState(false);
   return (
-    <div className="mx-10 my-5 block w-full max-w-sm min-w-[475px] justify-evenly rounded-lg border border-gray-200 bg-white px-6 shadow-sm">
+    <div className="m-10 block w-full max-w-sm min-w-[475px] justify-evenly rounded-lg border border-gray-200 bg-white px-6 shadow-sm">
       {" "}
       <button
         className={`flex h-[50px] w-full items-center justify-between transition-all duration-300 ease-in-out ${collapsed ? "rounded-xl" : "rounded-t-xl"}`}
@@ -21,7 +21,7 @@ export default function PersonalDetails() {
         />
       </button>
       <div
-        className={`flex w-full flex-col items-start justify-evenly rounded-b-xl transition-all duration-300 ease-in-out ${collapsed ? "h-0" : "h-[350px]"} m-0`}
+        className={`flex w-full flex-col items-start justify-evenly rounded-b-xl transition-all duration-300 ease-in-out ${collapsed ? "h-0" : "h-[325px]"} mb-2`}
       >
         {!collapsed && (
           <>
