@@ -5,7 +5,7 @@ import ExperienceForm from "./ExperienceForm";
 
 export default function Experience() {
   const [collapsed, setCollapsed] = useState(true);
-  const [formOpen, setFormOpen] = useState(true);
+  const [formClose, setFormClose] = useState(true);
 
   return (
     <div className="m-10 block w-full max-w-sm min-w-[475px] justify-evenly rounded-lg border border-gray-200 bg-white px-6 shadow-sm">
@@ -24,15 +24,29 @@ export default function Experience() {
       <div
         className={`flex w-full items-center justify-center rounded-b-xl transition-all duration-300 ease-in-out ${collapsed ? "h-0" : "min-h-[75px]"}`}
       >
-        {!collapsed && formOpen && (
+        {!collapsed && formClose && (
           <Button
             buttonText="+ Experience"
-            onClick={() => setFormOpen(!formOpen)}
+            onClick={() => setFormClose(!formClose)}
           />
         )}
 
-        {!collapsed && !formOpen && <ExperienceForm />}
+        {!collapsed && !formClose && <ExperienceForm />}
       </div>
+
+      {!formClose && (
+        <div className="mb-3 flex w-full items-center justify-end gap-2">
+          <Button
+            buttonText="Cancel"
+            className="h-6 w-15 px-1 py-0.5 text-xs"
+            onClick={() => setFormClose(true)}
+          />
+          <Button
+            buttonText="Save"
+            className="h-6 w-15 bg-sky-900 px-1 py-0.5 text-xs text-white"
+          />
+        </div>
+      )}
     </div>
   );
 }
