@@ -1,8 +1,11 @@
 import { useState } from "react";
 import { MdArrowBackIosNew, MdWork } from "react-icons/md";
+import Button from "../Button";
+import ExperienceForm from "./ExperienceForm";
 
-export default function Skills() {
+export default function Experience() {
   const [collapsed, setCollapsed] = useState(true);
+  const [formOpen, setFormOpen] = useState(true);
 
   return (
     <div className="m-10 block w-full max-w-sm min-w-[475px] justify-evenly rounded-lg border border-gray-200 bg-white px-6 shadow-sm">
@@ -12,20 +15,23 @@ export default function Skills() {
       >
         <div className="flex items-center justify-center space-x-2">
           <MdWork />
-          <h3 className="font-semibold">Skills</h3>
+          <h3 className="font-semibold">Experience</h3>
         </div>
         <MdArrowBackIosNew
           className={`text-sm transition-transform duration-300 ${collapsed ? "rotate-90" : "-rotate-90"}`}
         />
       </button>
       <div
-        className={`flex w-full items-center justify-center rounded-b-xl transition-all duration-300 ease-in-out ${collapsed ? "h-0" : "h-[75px]"} m-0`}
+        className={`flex w-full items-center justify-center rounded-b-xl transition-all duration-300 ease-in-out ${collapsed ? "h-0" : "min-h-[75px]"}`}
       >
-        {!collapsed && (
-          <button className="mb-1 rounded-full border border-slate-300 px-5 py-2 text-center text-sm text-slate-600 shadow-sm transition-all hover:border-slate-800 hover:bg-slate-800 hover:text-white hover:shadow-lg focus:border-slate-800 focus:bg-slate-800 focus:text-white active:border-slate-800 active:bg-slate-800 active:text-white disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
-            + Skill
-          </button>
+        {!collapsed && formOpen && (
+          <Button
+            buttonText="+ Experience"
+            onClick={() => setFormOpen(!formOpen)}
+          />
         )}
+
+        {!collapsed && !formOpen && <ExperienceForm />}
       </div>
     </div>
   );

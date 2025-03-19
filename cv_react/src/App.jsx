@@ -1,8 +1,7 @@
-import { useState } from "react";
 import PersonalDetails from "./components/PersonalDetails";
-import Education from "./components/Education";
-import Experience from "./components/Experience";
-import Skills from "./components/Skills";
+import Education from "./components/Education/Education";
+import Experience from "./components/Experience/Experience";
+import Skills from "./components/Skills/Skills";
 import Resume from "./components/Resume";
 
 function App() {

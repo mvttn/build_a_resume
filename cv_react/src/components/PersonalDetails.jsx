@@ -21,24 +21,24 @@ export default function PersonalDetails() {
         />
       </button>
       <div
-        className={`flex w-full flex-col items-start justify-evenly rounded-b-xl transition-all duration-300 ease-in-out ${collapsed ? "h-0" : "h-[325px]"} mb-2`}
+        className={`flex w-full flex-col items-start justify-evenly rounded-b-xl transition-all duration-300 ease-in-out ${collapsed ? "h-0" : "h-[325px]"}`}
       >
         {!collapsed && (
           <>
             <Input
               id="full-name"
-              placeholder="Enter first and last name"
+              placeholder="Enter First and Last Name"
               labelText="Full Name"
             />
             <Input
               id="email"
-              placeholder="Enter email"
+              placeholder="Enter Email"
               inputType="email"
               labelText="Email"
             />
             <Input
               id="phone-number"
-              placeholder="Enter phone number"
+              placeholder="Enter Phone Number"
               type="tel"
               labelText="Phone Number"
             />
