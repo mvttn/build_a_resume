@@ -1,4 +1,11 @@
 import Input from "../Input";
+import PropTypes from "prop-types";
+
+PersonalDetailsForm.propTypes = {
+  formData: PropTypes.object.isRequired,
+  onChange: PropTypes.func.isRequired,
+};
+
 export default function PersonalDetailsForm({ formData, onChange }) {
   return (
     <>

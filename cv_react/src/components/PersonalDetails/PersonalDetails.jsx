@@ -2,6 +2,12 @@ import { useState } from "react";
 import { MdArrowBackIosNew } from "react-icons/md";
 import { FaUser } from "react-icons/fa";
 import PersonalDetailsForm from "./PersonalDetailsForm";
+import PropTypes from "prop-types";
+
+PersonalDetails.propTypes = {
+  formData: PropTypes.object.isRequired,
+  onChange: PropTypes.func.isRequired,
+};
 
 export default function PersonalDetails({ formData, onChange }) {
   const [collapsed, setCollapsed] = useState(false);

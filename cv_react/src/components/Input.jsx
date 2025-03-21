@@ -1,3 +1,14 @@
+import PropTypes from "prop-types";
+
+Input.propTypes = {
+  type: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  placeholder: PropTypes.string.isRequired,
+  labelText: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+};
+
 export default function Input({
   type = "text",
   id,
