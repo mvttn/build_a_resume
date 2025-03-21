@@ -14,7 +14,7 @@ export default function Skills() {
       >
         <div className="flex items-center justify-center space-x-2">
           <FaLightbulb size="1.3em" />
-          <h3 className="font-semibold">Skills</h3>
+          <h3 className="font-semibold text-lg">Skills</h3>
         </div>
         <MdArrowBackIosNew
           className={`text-sm transition-transform duration-300 ${collapsed ? "rotate-90" : "-rotate-90"}`}

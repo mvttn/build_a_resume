@@ -21,7 +21,7 @@ export default function PersonalDetails({ formData, onChange }) {
       >
         <div className="flex items-center justify-center space-x-2">
           <FaUser size="1.3em" />
-          <h3 className="font-semibold">Personal Details</h3>
+          <h3 className="font-semibold text-lg">Personal Details</h3>
         </div>
         <MdArrowBackIosNew
           className={`text-sm transition-transform duration-300 ${collapsed ? "rotate-90" : "-rotate-90"}`}

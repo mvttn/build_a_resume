@@ -15,7 +15,7 @@ export default function Experience() {
       >
         <div className="flex items-center justify-center space-x-2">
           <MdWork size="1.3em" />
-          <h3 className="font-semibold">Experience</h3>
+          <h3 className="font-semibold text-lg">Experience</h3>
         </div>
         <MdArrowBackIosNew
           className={`text-sm transition-transform duration-300 ${collapsed ? "rotate-90" : "-rotate-90"}`}
@@ -34,7 +34,7 @@ export default function Experience() {
         {!collapsed && !formClose && <ExperienceForm />}
       </div>
 
-      {!formClose && (
+      {!collapsed && !formClose && (
         <div className="mb-3 flex w-full items-center justify-end gap-2">
           <Button
             buttonText="Cancel"
