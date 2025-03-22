@@ -6,7 +6,8 @@ import Skills from "./Skills/Skills";
 import PersonalDetailsPreview from "./PersonalDetails/PersonalDetailsPreview";
 import EducationPreview from "./Education/EducationPreview";
 import ExperiencePreview from "./Experience/ExperiencePreview";
-
+import SkillsPreview from "./Skills/SkillsPreview";
+  
 export default function Parent() {
   const [personalDetails, setPersonalDetails] = useState({
     fullName: "",
@@ -128,6 +129,30 @@ export default function Parent() {
     });
     setIsEditingExperience(false);
   };
+
+  const [skills, setSkills] = useState([]);
+  const [newSkill, setNewSkill] = useState("");
+  const [isEditingSkill, setIsEditingSkill] = useState(false);
+
+  const handleSkillChange = (e) => {
+    setNewSkill(e.target.value);
+  };
+
+  const addSkill = () => {
+    setSkills([...skills, newSkill]);
+    setNewSkill("");
+    setIsEditingSkill(false);
+  };
+
+  const removeSkill = (index) => {
+    setSkills((prev) => prev.filter((_, i) => i !== index));
+  };
+
+  const cancelSkillEdit = () => {
+    setNewSkill("");
+    setIsEditingSkill(false);
+  };
+
   return (
     <div className="flex">
       <div>
@@ -155,7 +180,16 @@ export default function Parent() {
           onSave={addExperience}
           onCancel={cancelExperienceEdit}
         />
-        <Skills />
+        <Skills
+          skillsList={skills}
+          newSkill={newSkill}
+          isEditingSkill={isEditingSkill}
+          onChange={handleSkillChange}
+          onAdd={() => setIsEditingSkill(true)}
+          onRemove={removeSkill}
+          onSave={addSkill}
+          onCancel={cancelSkillEdit}
+        />
       </div>
       <div className="m-10 ml-5 block min-h-[297mm] w-full max-w-sm min-w-[210mm] justify-evenly border border-gray-200 bg-white px-6 shadow-sm">
         <PersonalDetailsPreview formData={personalDetails} />
@@ -170,7 +204,7 @@ export default function Parent() {
           (edu, index) =>
             edu && <EducationPreview key={index} formData={edu} />,
         )}
-        <hr className="solid mt-6" />  
+        <hr className="solid mt-6" />
         <h2 className="m-2 text-base font-semibold text-gray-700 italic underline">
           Professional Experience
         </h2>
@@ -181,6 +215,11 @@ export default function Parent() {
           (exp, index) =>
             exp && <ExperiencePreview key={index} formData={exp} />,
         )}
+        <hr className="solid mt-6" />
+        <h2 className="m-2 text-base font-semibold text-gray-700 italic underline">
+          Relevant Skills
+        </h2>
+        <SkillsPreview skillsList={skills} />
       </div>
     </div>
   );

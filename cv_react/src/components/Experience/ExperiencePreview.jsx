@@ -19,7 +19,7 @@ export default function ExperiencePreview({ formData }) {
         </div>
 
         {/* Right Side: Dates and Location */}
-        <div className="flex flex-col items-center items-end text-sm text-gray-500">
+        <div className="flex flex-col items-end text-sm text-gray-500">
           <p>
             {formatMonthYear(formData.startDate) || "Start Date"} -{" "}
             {formatMonthYear(formData.endDate) || "End Date"}
@@ -32,11 +32,17 @@ export default function ExperiencePreview({ formData }) {
       </div>
 
       {/* Description */}
-      <div className="mt-2 text-sm text-gray-600">
-        <p>
-          {formData.description ||
-            "Describe your role and responsibilities here."}
-        </p>
+      <div className="mt-3 text-sm text-gray-500">
+        <ul className="list-disc pl-5">
+          {(
+            formData.description ||
+            "Describe your role and responsibilities here."
+          )
+            .split("/n")
+            .map((line, index) => (
+              <li key={index}>{line}</li>
+            ))}
+        </ul>
       </div>
     </div>
   );
