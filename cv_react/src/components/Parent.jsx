@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
+import { jsPDF } from "jspdf";
+import html2canvas from "html2canvas";
 import PersonalDetails from "./PersonalDetails/PersonalDetails";
 import Education from "./Education/Education";
 import Experience from "./Experience/Experience";
@@ -7,8 +9,9 @@ import PersonalDetailsPreview from "./PersonalDetails/PersonalDetailsPreview";
 import EducationPreview from "./Education/EducationPreview";
 import ExperiencePreview from "./Experience/ExperiencePreview";
 import SkillsPreview from "./Skills/SkillsPreview";
-  
+
 export default function Parent() {
+  const divRef = useRef(null);
   const [personalDetails, setPersonalDetails] = useState({
     fullName: "",
     email: "",
@@ -153,8 +156,67 @@ export default function Parent() {
     setIsEditingSkill(false);
   };
 
+  const handleDownloadPDF = async () => {
+    console.log("Downloading PDF...");
+
+    if (!divRef.current) {
+      console.error("No element found for divRef");
+      return;
+    }
+
+    try {
+      // Create a clone of the element to modify before rendering
+      const clone = divRef.current.cloneNode(true);
+      const tempDiv = document.createElement("div");
+      tempDiv.appendChild(clone);
+      document.body.appendChild(tempDiv);
+
+      // Replace problematic oklch colors with fallback colors
+      const elementsWithStyle = tempDiv.querySelectorAll("*");
+      elementsWithStyle.forEach((el) => {
+        const style = window.getComputedStyle(el);
+        // Apply fallback colors for any element that might use oklch
+        if (
+          style.color.includes("oklch") ||
+          style.backgroundColor.includes("oklch") ||
+          style.borderColor.includes("oklch")
+        ) {
+          // Replace with fallback colors
+          el.style.color = "#000000"; // Black fallback for text
+          if (style.backgroundColor.includes("oklch")) {
+            el.style.backgroundColor = "#ffffff"; // White fallback for backgrounds
+          }
+          if (style.borderColor.includes("oklch")) {
+            el.style.borderColor = "#cccccc"; // Gray fallback for borders
+          }
+        }
+      });
+
+      // Generate canvas from the modified clone
+      const canvas = await html2canvas(clone, {
+        scale: 2,
+        useCORS: true,
+        logging: true,
+        backgroundColor: "#ffffff",
+      });
+
+      // Remove the temporary element
+      document.body.removeChild(tempDiv);
+
+      const imgData = canvas.toDataURL("image/png");
+      const pdf = new jsPDF("p", "mm", "a4");
+      const pdfWidth = pdf.internal.pageSize.getWidth();
+      const pdfHeight = pdf.internal.pageSize.getHeight();
+
+      pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
+      pdf.save("resume.pdf");
+    } catch (error) {
+      console.error("PDF Generation Error:", error);
+    }
+  };
+
   return (
-    <div className="flex">
+    <div className="relative flex">
       <div>
         <PersonalDetails
           formData={personalDetails}
@@ -191,7 +253,10 @@ export default function Parent() {
           onCancel={cancelSkillEdit}
         />
       </div>
-      <div className="m-10 ml-5 block min-h-[297mm] w-full max-w-sm min-w-[210mm] justify-evenly border border-gray-200 bg-white px-6 shadow-sm">
+      <div
+        ref={divRef}
+        className="m-10 ml-5 block min-h-[297mm] w-full max-w-sm min-w-[210mm] justify-evenly border border-gray-200 bg-white px-6 shadow-sm"
+      >
         <PersonalDetailsPreview formData={personalDetails} />
         <hr className="solid" />
         <h2 className="m-2 text-base font-semibold text-gray-700 italic underline">
@@ -221,6 +286,12 @@ export default function Parent() {
         </h2>
         <SkillsPreview skillsList={skills} />
       </div>
+      <button
+        onClick={handleDownloadPDF}
+        className="fixed bottom-0 right-0 m-4 rounded bg-sky-900 px-4 py-2 text-white shadow hover:bg-sky-700"
+      >
+        Download as PDF
+      </button>
     </div>
   );
 }

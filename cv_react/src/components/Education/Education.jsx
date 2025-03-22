@@ -49,8 +49,8 @@ export default function Education({
           >
             {/* Left section: School & Degree */}
             <div className="flex w-full flex-col">
-              <p className="text-sm font-medium">{`${entry.school} - ${entry.degree}`}</p>
-              <p className="text-xs font-semibold text-gray-600">
+              <p className="text-sm ">{`${entry.school} - ${entry.degree}`}</p>
+              <p className="self-end text-xs text-gray-600">
                 {`${formatMonthYear(entry.startDate)} - ${formatMonthYear(entry.endDate)}`}
               </p>
             </div>
