@@ -40,7 +40,7 @@ export default function ExperiencePreview({ formData }) {
           )
             .split("/n")
             .map((line, index) => (
-              <li key={index}>{line}</li>
+              <li key={index}>{line}  </li>
             ))}
         </ul>
       </div>
