@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import { FaLocationDot } from "react-icons/fa6";
+import formatMonthYear from "../formatDate";
 
 export default function EducationPreview({ formData }) {
   return (
@@ -17,8 +18,8 @@ export default function EducationPreview({ formData }) {
         {/* Right Side: Dates and Location */}
         <div className="flex flex-col items-end text-sm text-gray-500">
           <p>
-            {formData.startDate || "Start Date"} -{" "}
-            {formData.endDate || "End Date"}
+            {formatMonthYear(formData.startDate) || "Start Date"} -{" "}
+            {formatMonthYear(formData.endDate) || "End Date"}
           </p>
           <div className="flex items-center gap-1">
             <FaLocationDot />

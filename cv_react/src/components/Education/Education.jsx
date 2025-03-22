@@ -4,12 +4,7 @@ import { GiGraduateCap } from "react-icons/gi";
 import Button from "../Button";
 import EducationForm from "./EducationForm";
 import PropTypes from "prop-types";
-
-function formatMonthYear(input) {
-  const date = new Date(input);
-  const options = { month: "long", year: "numeric" };
-  return date.toLocaleDateString("en-US", options);
-}
+import formatMonthYear from "../formatDate";
 
 export default function Education({
   educationList,

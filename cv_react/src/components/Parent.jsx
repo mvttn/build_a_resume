@@ -5,6 +5,8 @@ import Experience from "./Experience/Experience";
 import Skills from "./Skills/Skills";
 import PersonalDetailsPreview from "./PersonalDetails/PersonalDetailsPreview";
 import EducationPreview from "./Education/EducationPreview";
+import ExperiencePreview from "./Experience/ExperiencePreview";
+
 export default function Parent() {
   const [personalDetails, setPersonalDetails] = useState({
     fullName: "",
@@ -71,6 +73,61 @@ export default function Parent() {
     setIsEditingEducation(false);
   };
 
+  const [experienceHistory, setExperienceHistory] = useState([
+    {
+      companyName: "",
+      positionTitle: "",
+      startDate: "",
+      endDate: "",
+      location: "",
+      description: "",
+    },
+  ]);
+
+  const [newExperience, setNewExperience] = useState({
+    companyName: "",
+    positionTitle: "",
+    startDate: "",
+    endDate: "",
+    location: "",
+    description: "",
+  });
+
+  const [isEditingExperience, setIsEditingExperience] = useState(false);
+
+  const handleExperienceChange = (e) => {
+    const { id, value } = e.target;
+    setNewExperience((prev) => ({ ...prev, [id]: value }));
+  };
+
+  const addExperience = () => {
+    setExperienceHistory([...experienceHistory, newExperience]);
+    setNewExperience({
+      companyName: "",
+      positionTitle: "",
+      startDate: "",
+      endDate: "",
+      location: "",
+      description: "",
+    });
+    setIsEditingExperience(false);
+  };
+
+  const removeExperience = (index) => {
+    setExperienceHistory((prev) => prev.filter((_, i) => i !== index));
+  };
+
+  const cancelExperienceEdit = () => {
+    setNewExperience({
+      companyName: "",
+      positionTitle: "",
+      startDate: "",
+      endDate: "",
+      location: "",
+      description: "",
+    });
+    setIsEditingExperience(false);
+  };
   return (
     <div className="flex">
       <div>
@@ -79,7 +136,6 @@ export default function Parent() {
           onChange={handlePersonalDetailsChange}
         />
         <Education
-          // Show all education entries (if needed, you can slice the array to hide the example)
           educationList={educationHistory}
           newEducation={newEducation}
           isEditingEducation={isEditingEducation}
@@ -89,19 +145,41 @@ export default function Parent() {
           onSave={addEducation}
           onCancel={cancelEdit}
         />
-        <Experience />
+        <Experience
+          experienceList={experienceHistory}
+          newExperience={newExperience}
+          isEditingExperience={isEditingExperience}
+          onChange={handleExperienceChange}
+          onAdd={() => setIsEditingExperience(true)}
+          onRemove={removeExperience}
+          onSave={addExperience}
+          onCancel={cancelExperienceEdit}
+        />
         <Skills />
       </div>
       <div className="m-10 ml-5 block min-h-[297mm] w-full max-w-sm min-w-[210mm] justify-evenly border border-gray-200 bg-white px-6 shadow-sm">
         <PersonalDetailsPreview formData={personalDetails} />
         <hr className="solid" />
-        <h2 className="m-2 text-base font-semibold text-gray-700 underline italic">Education</h2>
+        <h2 className="m-2 text-base font-semibold text-gray-700 italic underline">
+          Education
+        </h2>
         {[
           ...educationHistory.slice(1),
           isEditingEducation ? newEducation : null,
         ].map(
           (edu, index) =>
             edu && <EducationPreview key={index} formData={edu} />,
+        )}
+        <hr className="solid mt-6" />  
+        <h2 className="m-2 text-base font-semibold text-gray-700 italic underline">
+          Professional Experience
+        </h2>
+        {[
+          ...experienceHistory.slice(1),
+          isEditingExperience ? newExperience : null,
+        ].map(
+          (exp, index) =>
+            exp && <ExperiencePreview key={index} formData={exp} />,
         )}
       </div>
     </div>
