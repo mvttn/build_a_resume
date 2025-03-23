@@ -37,7 +37,7 @@ export default function Experience({
         {experienceList.slice(1).map((entry, index) => (
           <div
             key={index}
-            className="mb-2 flex w-full items-center justify-between rounded border border-stone-300 p-2"
+            className="mb-4 flex w-full items-center justify-between rounded border border-stone-300 p-2"
           >
             {/* Left section */}
             <div className="flex flex-col">

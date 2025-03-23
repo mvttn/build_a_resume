@@ -45,7 +45,7 @@ export default function Education({
         {educationList.slice(1).map((entry, index) => (
           <div
             key={index}
-            className="mb-2 flex w-full items-center justify-between rounded border border-stone-300 p-2"
+            className="mb-4 flex w-full items-center justify-between rounded border border-stone-300 p-2"
           >
             {/* Left section: School & Degree */}
             <div className="flex w-full flex-col">
