@@ -182,12 +182,12 @@ export default function Parent() {
           style.backgroundColor.includes("oklch") ||
           style.borderColor.includes("oklch")
         ) {
-          el.style.color = "#000000";
+          el.style.color = "#353535";
           if (style.backgroundColor.includes("oklch")) {
             el.style.backgroundColor = "#ffffff";
           }
           if (style.borderColor.includes("oklch")) {
-            el.style.borderColor = "#cccccc";
+            el.style.borderColor = "#999999";
           }
         }
       });
