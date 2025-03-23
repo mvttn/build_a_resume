@@ -40,11 +40,11 @@ export default function Experience({
             className="mb-4 flex w-full items-center justify-between rounded border border-stone-300 p-2"
           >
             {/* Left section */}
-            <div className="flex flex-col">
+            <div className="flex w-full flex-col">
               <p className="text-sm font-medium">
                 {entry.companyName} - {entry.positionTitle}
               </p>
-              <p className="text-xs text-gray-600 self-end">
+              <p className="self-end text-xs text-gray-600">
                 {`${formatMonthYear(entry.startDate)} - ${formatMonthYear(entry.endDate)}`}
               </p>
             </div>
