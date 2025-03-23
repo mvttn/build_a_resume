@@ -34,7 +34,7 @@ export default function PersonalDetailsForm({ formData, onChange }) {
       />
       <Input
         id="address"
-        placeholder="City, Country"
+        placeholder="City / Country"
         labelText="Address"
         value={formData.address}
         onChange={onChange}

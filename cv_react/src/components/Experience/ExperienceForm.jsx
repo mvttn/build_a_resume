@@ -42,7 +42,7 @@ export default function ExperienceForm({ values, onChange }) {
       </div>
       <Input
         id="location"
-        placeholder="City, Country"
+        placeholder="City / Country"
         labelText="Location"
         value={values.location}
         onChange={onChange}
