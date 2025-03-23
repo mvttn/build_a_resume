@@ -36,7 +36,7 @@ export default function ExperiencePreview({ formData }) {
         <ul className="list-disc pl-5">
           {(
             formData.description ||
-            "Describe your role and responsibilities here. Start new dot-points with '/n'"
+            "Describe your role and responsibilities here."
           )
             .split("/n")
             .map((line, index) => (

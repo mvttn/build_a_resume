@@ -49,7 +49,7 @@ export default function ExperienceForm({ values, onChange }) {
       />
       <textarea
         id="description"
-        placeholder="Describe your role and responsibilities... Start new dot-points with '/n'"
+        placeholder="Describe your role and responsibilities. To start a new dot-point use '/n'"
         rows="6"
         value={values.description}
         onChange={onChange}
