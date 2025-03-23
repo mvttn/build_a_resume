@@ -44,7 +44,7 @@ export default function Experience({
               <p className="text-sm font-medium">
                 {entry.companyName} - {entry.positionTitle}
               </p>
-              <p className="text-xs text-gray-600">
+              <p className="text-xs text-gray-600 self-end">
                 {`${formatMonthYear(entry.startDate)} - ${formatMonthYear(entry.endDate)}`}
               </p>
             </div>
