@@ -22,8 +22,8 @@ export default function EducationPreview({ formData }) {
             {formatMonthYear(formData.endDate) || "End Date"}
           </p>
           <div className="flex items-center gap-1">
-            <FaLocationDot />
-            <p>{formData.location || "Location"}</p>
+            <FaLocationDot size="1.2em" />
+            <p className="m-0">{formData.location || "Location"}</p>
           </div>
         </div>
       </div>

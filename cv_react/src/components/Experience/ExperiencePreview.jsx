@@ -25,7 +25,7 @@ export default function ExperiencePreview({ formData }) {
             {formatMonthYear(formData.endDate) || "End Date"}
           </p>
           <div className="flex items-center gap-1">
-            <FaLocationDot />
+            <FaLocationDot size="1.2em" />
             <p>{formData.location || "Location"}</p>
           </div>
         </div>

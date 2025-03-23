@@ -3,3 +3,11 @@
 * {
   font-family: Calibri, "Gill Sans", "Gill Sans MT", "Trebuchet MS", sans-serif;
 }
+
+body {
+  line-height: 0.5 !important;
+}
+
+#resume {
+  line-height: normal;
+}

@@ -156,7 +156,10 @@ export default function Parent() {
     setIsEditingSkill(false);
   };
 
+  const [isDownloading, setIsDownloading] = useState(false);
+
   const handleDownloadPDF = async () => {
+    setIsDownloading(true);
     console.log("Downloading PDF...");
 
     if (!divRef.current) {
@@ -165,42 +168,40 @@ export default function Parent() {
     }
 
     try {
-      // Create a clone of the element to modify before rendering
+      await document.fonts.ready;
       const clone = divRef.current.cloneNode(true);
       const tempDiv = document.createElement("div");
       tempDiv.appendChild(clone);
       document.body.appendChild(tempDiv);
 
-      // Replace problematic oklch colors with fallback colors
       const elementsWithStyle = tempDiv.querySelectorAll("*");
       elementsWithStyle.forEach((el) => {
         const style = window.getComputedStyle(el);
-        // Apply fallback colors for any element that might use oklch
         if (
           style.color.includes("oklch") ||
           style.backgroundColor.includes("oklch") ||
           style.borderColor.includes("oklch")
         ) {
-          // Replace with fallback colors
-          el.style.color = "#000000"; // Black fallback for text
+          el.style.color = "#000000";
           if (style.backgroundColor.includes("oklch")) {
-            el.style.backgroundColor = "#ffffff"; // White fallback for backgrounds
+            el.style.backgroundColor = "#ffffff";
           }
           if (style.borderColor.includes("oklch")) {
-            el.style.borderColor = "#cccccc"; // Gray fallback for borders
+            el.style.borderColor = "#cccccc";
           }
         }
       });
 
-      // Generate canvas from the modified clone
+      // Optional delay for DOM adjustments
+      await new Promise((resolve) => setTimeout(resolve, 300));
+
       const canvas = await html2canvas(clone, {
-        scale: 2,
+        scale: 4,
         useCORS: true,
         logging: true,
         backgroundColor: "#ffffff",
       });
 
-      // Remove the temporary element
       document.body.removeChild(tempDiv);
 
       const imgData = canvas.toDataURL("image/png");
@@ -212,6 +213,8 @@ export default function Parent() {
       pdf.save("resume.pdf");
     } catch (error) {
       console.error("PDF Generation Error:", error);
+    } finally {
+      setIsDownloading(false);
     }
   };
 
@@ -254,11 +257,12 @@ export default function Parent() {
         />
       </div>
       <div
+        id="resume"
         ref={divRef}
-        className="m-10 ml-5 block min-h-[297mm] w-full max-w-sm min-w-[210mm] justify-evenly border border-gray-200 bg-white px-6 shadow-sm"
+        className="resume m-10 ml-5 block min-h-[297mm] w-full max-w-sm min-w-[210mm] justify-evenly border border-gray-200 bg-white px-6 shadow-sm"
       >
         <PersonalDetailsPreview formData={personalDetails} />
-        <hr className="solid" />
+        <hr className="solid border-gray-300" />
         <h2 className="m-2 text-base font-semibold text-gray-700 italic underline">
           Education
         </h2>
@@ -269,7 +273,7 @@ export default function Parent() {
           (edu, index) =>
             edu && <EducationPreview key={index} formData={edu} />,
         )}
-        <hr className="solid mt-6" />
+        <hr className="solid mt-6 border-gray-300" />
         <h2 className="m-2 text-base font-semibold text-gray-700 italic underline">
           Professional Experience
         </h2>
@@ -280,7 +284,7 @@ export default function Parent() {
           (exp, index) =>
             exp && <ExperiencePreview key={index} formData={exp} />,
         )}
-        <hr className="solid mt-6" />
+        <hr className="solid mt-6 border-gray-300" />
         <h2 className="m-2 text-base font-semibold text-gray-700 italic underline">
           Relevant Skills
         </h2>
@@ -288,9 +292,9 @@ export default function Parent() {
       </div>
       <button
         onClick={handleDownloadPDF}
-        className="fixed bottom-0 right-0 m-4 rounded bg-sky-900 px-4 py-2 text-white shadow hover:bg-sky-700"
+        className="fixed right-0 bottom-0 m-4 rounded bg-sky-900 px-8 py-4 text-white shadow hover:bg-sky-700"
       >
-        Download as PDF
+        {isDownloading ? "Downloading..." : "Download as PDF"}
       </button>
     </div>
   );
